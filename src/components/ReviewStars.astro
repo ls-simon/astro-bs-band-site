@@ -1,0 +1,21 @@
+---
+interface Props {
+    stars: number;
+}
+const {stars} = Astro.props;
+---
+
+<ul class="list-unstyled d-flex justify-content-center">
+    {Array.from({length: stars}).map(_ => {
+        return (<li class="star">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24">
+	        <path fill="lightblue" d="m12 17l-5.878 3.59l1.598-6.7l-5.23-4.48l6.865-.55L12 2.5l2.645 6.36l6.865.55l-5.23 4.48l1.598 6.7z" />
+            </svg>
+        </li>)
+    })}        
+</ul>  
+<style>
+    .star {
+        fill: lightblue;
+    }
+</style>

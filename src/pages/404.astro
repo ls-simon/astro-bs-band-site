@@ -1,0 +1,31 @@
+---
+import PageCleanLayout from '../layouts/MainLayout.astro';
+---
+
+<PageCleanLayout title="Siden findes ikke">    
+    <div class="d-flex flex-column align-items-center" style="height: 75vh;">
+        <span class="notfound">Ups..!</span>
+        <span class="lead">.. I did it again</span>
+        <span class="m-auto mb-0">Siden findes ikke</span>
+        <button type="button" class="btn btn-outline-dark mt-2" style="--bs-btn-hover-bg: rgb(109, 2, 109);">Gå til hjemmeside</button>
+
+    </div>
+</PageCleanLayout>
+
+<style>
+    .notfoundcontainer {
+        height: 200px;
+        position: relative;
+    }
+
+    .notfound {
+        font-family: 'Railway', sans-serif;
+        font-size: 200px;
+        font-weight: 900;
+        background: url(images/poster.jpg) no-repeat;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-size: cover;
+        background-position: center;
+    }
+</style>

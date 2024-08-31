@@ -1,0 +1,90 @@
+<div class="image-stack">
+  <div class="frame">
+    <img src="images/poster2.jpg" class="img-fluid" />
+  </div>
+  <div class="frame">
+    <img src="images/portrait2.jpg" />
+  </div>
+  <div class="frame">
+    <img src="images/portrait3.jpg" />
+  </div>
+  <div class="frame">
+    <img src="images/portrait4.jpg" />
+  </div>
+  <div class="frame">
+    <img src="images/portrait5.jpg" />
+  </div>
+  <div class="frame">
+    <img src="images/portrait6.jpg" />
+  </div>
+</div>
+
+<style>
+  .image-stack {
+    position: absolute;
+    top: 37%;
+    left: 37%;
+  }
+
+  .image-stack .frame {
+    position: absolute;
+    display: block;
+    border: 6px solid #f0f0f0;
+    border-radius: 2px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    transition: margin 0.5s;
+    -webkit-transition: margin 0.5s;
+  }
+
+  .image-stack img {
+    max-width: 300px;
+    height: auto;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+  }
+
+  .image-stack .frame:first-of-type {
+    z-index: 2;
+    transform: rotate(-3deg);
+    -webkit-transform: rotate(-3deg);
+  }
+
+  .image-stack .frame:nth-of-type(2) {
+    margin-top: -59px;
+    margin-left: -169px;
+    z-index: 1;
+    transform: rotate(349deg);
+    -webkit-transform: rotate(349deg);
+  }
+
+  .image-stack .frame:nth-of-type(3) {
+    margin-top: -106px;
+    margin-left: -356px;
+    z-index: 1;
+    transform: rotate(349deg);
+    -webkit-transform: rotate(337deg);
+  }
+
+  .image-stack .frame:nth-of-type(4) {
+    margin-top: -181px;
+    margin-left: -77px;
+    z-index: -2;
+    transform: rotate(349deg);
+    -webkit-transform: rotate(349deg);
+  }
+
+  .image-stack .frame:nth-of-type(5) {
+    margin-top: -50px;
+    margin-left: 267px;
+    z-index: -7;
+    transform: rotate(349deg);
+    -webkit-transform: rotate(15deg);
+  }
+
+  .image-stack .frame:last-of-type {
+    margin-top: -130px;
+    margin-left: 109px;
+    transform: rotate(3deg);
+    -webkit-transform: rotate(3deg);
+  }
+</style>

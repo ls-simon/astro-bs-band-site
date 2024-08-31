@@ -1,0 +1,11 @@
+---
+const {url} = Astro.props;
+---
+<div class="ratio ratio-16x9 mw-100">
+    <iframe
+      src={url}
+      title="Snack Patrol Video"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen></iframe>
+  </div>

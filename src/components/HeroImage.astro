@@ -1,0 +1,31 @@
+---
+interface Props {
+  backgroundImage: string;
+  header: string;
+  lead: string;
+  body?: string;
+}
+
+const { backgroundImage, header, lead, body } = Astro.props;
+---
+
+<header
+  class="hero-fixed-bg d-flex flex-column h-100"
+  style=`background-image: linear-gradient(rgb(0 0 0 / 27%), rgb(1 1 1 / 44%)),url(${backgroundImage});`
+>
+  <div class="col-lg-6 py-5 m-auto">
+    <h1 class="display-5 fw-bold text-light text-center lh-1 mb-3">{header}</h1>
+    <p class="lead text-light text-center">{lead}</p>
+    <p class="text-muted">{body}</p>
+  </div>
+
+  <style>
+    .hero-fixed-bg {
+      background-position: center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-color: color-mix(in srgb, var(--background-color), transparent 50%);
+    }
+  </style>
+</header>

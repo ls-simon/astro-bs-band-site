@@ -10,8 +10,14 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^4.14.5",
     "@astrojs/check": "^0.9.3",
+    "@iconify-json/ri": "^1.1.22",
+    "@popperjs/core": "^2.11.8",
+    "aos": "^2.3.4",
+    "astro": "^4.14.5",
+    "astro-icon": "^1.1.1",
+    "bootstrap": "^5.3.3",
+    "swiffy-slider": "^1.6.0",
     "typescript": "^5.5.4"
   }
 }

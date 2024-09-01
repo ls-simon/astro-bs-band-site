@@ -1,0 +1,18 @@
+---
+import { getEntry } from 'astro:content';
+const bandmembers = await getEntry('lists', 'bandmembers');
+const bandmemberslist = bandmembers.body.trim().split('\n').map(line => {
+  const [name, role] = line.split('-');
+  return { name, role };
+});
+---
+<p class="lead">{bandmembers.data.title}</p>
+<ul class="text-muted">
+  {
+    bandmemberslist.map((member) => (
+      <li>
+        {member.name}&#45;<i>{member.role}</i>
+      </li>
+    ))
+  }
+</ul>

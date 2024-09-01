@@ -1,6 +1,7 @@
 ---
+import { getCollection } from "astro:content";
 import ReviewCard from "./ReviewCard.astro";
-const reviews = await Astro.glob("../md/reviews/*.md");
+const reviews = await getCollection('reviews');
 ---
 <div
   class="swiffy-slider slider-item-show1 slider-nav-outside slider-nav-visible slider-nav-animation slider-nav-animation-fadein">

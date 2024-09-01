@@ -1,24 +1,28 @@
 ---
 import SocialMediaBar from "../components/SocialMediaBar.astro";
 import HeroImage from "../components/HeroImage.astro";
-import * as Title from "../md/section-title.md"
-import * as Music from "../md/section-music.md";
-import * as About from "../md/section-about.md";
-import * as Contact from "../md/section-contact.md";
+import * as Title from "../content/sections/section-title.md"
+import * as Music from "../content/sections/section-music.md";
+import * as About from "../content/sections/section-about.md";
+import * as Reviews from "../content/sections/section-reviews.md";
+import * as Contact from "../content/sections/section-contact.md";
 import Video from "../components/Video.astro";
 import ImageStack from "../components/ImageStack.astro";
 import ReviewSlider from "../components/ReviewSlider.astro";
 import MainLayout from "../layouts/MainLayout.astro";
+import BandMembersList from "../components/BandMembersList.astro";
+import "../styles/index.css"
 ---
 
 <MainLayout title="Snack Patrol">
-  <div class="vh-100" id="hero-title">
-    <HeroImage
-      header={Title.frontmatter.header}
+  <section class="mt-0 pt-0">
+    <div class="vh-100" id="hero-title">
+      <HeroImage
+      header={Title.frontmatter.title}
       lead={Title.frontmatter.description}
       backgroundImage="images/poster.jpg"
-    />
-
+      />
+  </section>
     <section id="music" data-bs-offset="-50">
       <div class="row">
         <div class="section-title text-center">
@@ -86,16 +90,7 @@ import MainLayout from "../layouts/MainLayout.astro";
             <Video url="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2FSnackPatrolBand%2Fvideos%2F783649595737217%2F&show_text=false&width=560&t=0"/>
           </div>
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-              <p class="lead">Snack Patrol består af:</p>
-              <ul class="text-muted">
-                <li>Anne Sofie &#45; <i>lead vokal</i></li>
-                <li>Magnus Brunebjerg &#45; <i>guitar & vokal</i></li>
-                <li>Andreas Friis &#45; <i>guitar & vokal</i></li>
-                <li>Jacob Juul &#45; <i>bas & kor</i></li>
-                <li>Christian Damsgaard &#45; <i>trommer & drumpad & kor</i></li>
-                <li>Simon Nielsen &#45; <i>keyboard & kor</i></li>
-                <li>Malene &#45; <i>kor</i></li>
-              </ul>
+            <BandMembersList/>
           </div>
         </div>
         <div class="row g-5 p-5"> 
@@ -105,9 +100,9 @@ import MainLayout from "../layouts/MainLayout.astro";
       <section id="reviews" data-bs-offset="-50">
        <div class="row">
         <div class="section-title">
-          <h2 class="m-0 text-center">Anmeldelser</h2>
+          <h2 class="m-0 text-center">{Reviews.frontmatter.title}</h2>
         </div>
-        <p class="lead text-center">Vi har spillet masser af koncerter, læs anmeldelserne her</p>
+        <p class="lead text-center">{Reviews.frontmatter.description}</p>
        </div>
         <div class="row px-5 rounded-2">
             <div class="col col-review-slider rounded-2">
@@ -115,47 +110,7 @@ import MainLayout from "../layouts/MainLayout.astro";
             </div>
         </div>
       </section>
-
-    <style>
-      section {
-        padding: 2.5rem 0;
-        background-color: var(--bg);
-        margin-top: 2rem;
-      }
-
-      section:nth-child(1) {
-        margin-top: 2rem;
-      }
-
-      .section-title h2::before,
-      .section-title h2::after {
-        content: "";
-        width: 50px;
-        height: 2px;
-        background: purple;
-        display: inline-block;
-      }
-
-      .section-title h2::before {
-        margin: 0 15px 10px 0;
-      }
-
-      .section-title h2::after {
-        margin: 0 0 10px 15px;
-      }
-
-      .col-review-slider {
-        background: radial-gradient(50% 123.47% at 50% 50%, #00ff94 0%, #720059 100%), linear-gradient(121.28deg, #669600 0%, #ff0000 100%), linear-gradient(360deg, #0029ff 0%, #8fff00 100%), radial-gradient(100% 164.72% at 100% 100%, #6100ff 0%, #00ff57 100%), radial-gradient(100% 148.07% at 0% 0%, #fff500 0%, #51d500 100%);
-         background-blend-mode: screen, color-dodge, overlay, difference, normal;
-      }
-    </style>
-
-    <script src="https://unpkg.com/aos@2.3.0/dist/aos.js">
-      AOS.init({
-        duration: 1200,
-      });
-    </script>
-  </div></PageCleanLayout
->
+  </div>
+</PageCleanLayout>
 
 

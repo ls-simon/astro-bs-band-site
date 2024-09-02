@@ -1,17 +1,15 @@
 ---
-import { getEntry } from 'astro:content';
-const bandmembers = await getEntry('lists', 'bandmembers');
-const bandmemberslist = bandmembers.body.trim().split('\n').map(line => {
-  const [name, role] = line.split('-');
-  return { name, role };
-});
+import { getBandMembers } from "../js/hypgraph.js";
+
+const bandmembersData = await getBandMembers();
+const members = bandmembersData.data.members;
 ---
-<p class="lead">{bandmembers.data.title}</p>
+<p class="lead">Bandet består af:</p>
 <ul class="text-muted">
   {
-    bandmemberslist.map((member) => (
+    members.map((member) => (
       <li>
-        {member.name}&#45;<i>{member.role}</i>
+        {member.name} &#45; <i>{member.role}</i>
       </li>
     ))
   }

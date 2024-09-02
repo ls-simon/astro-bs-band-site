@@ -1,0 +1,42 @@
+---
+import type { Section } from "../../models/Models.ts";
+import Slider from "../Slider.astro";
+import { getReviews } from "../../js/hypgraph";
+import ReviewCard from "../ReviewCard.astro";
+interface Props {
+  section: Section
+}
+const {title, subtitle, description} = Astro.props.section;
+const reviewsData = await getReviews();
+const reviews = reviewsData.data.reviews;
+---
+
+<section id="reviews" data-bs-offset="-50">
+    <div class="row">
+     <div class="section-title">
+       <h2 class="m-0 text-center">{title}</h2>
+     </div>
+     <p class="lead text-center">{description}</p>
+    </div>
+     <div class="row px-5 rounded-2">
+         <div class="col col-review-slider rounded-2">
+           <Slider>
+                <ul class="slider-container py-4" slot="slides">
+                    {reviews.map((review) => { return <li class="d-flex"><ReviewCard review={review}/></li> })}
+                </ul>
+                <div class="slider-indicators" slot="indicators">
+                    {Array.from({length:reviews.length}).map((_, index) => {
+                        return <button aria-label="Go to slide" class={index == 0 ? "active" : null}></button>
+                    })}
+                  </div>
+           </Slider>
+         </div>
+     </div>
+   </section>
+
+
+<style>
+    .slider-indicators {
+        margin-bottom: 0;
+    }
+</style>

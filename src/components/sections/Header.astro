@@ -1,0 +1,17 @@
+---
+import type { Section } from "../../models/Models.ts";
+import HeroImage from "../HeroImage.astro";
+interface Props {
+  section: Section
+}
+const {title, subtitle, description} = Astro.props.section;
+---
+
+<section class="mt-0 pt-0">
+    <div class="vh-100" id="hero-title">
+      <HeroImage
+      header={title}
+      lead={description}
+      backgroundImage="images/poster.jpg"
+      />
+  </section>

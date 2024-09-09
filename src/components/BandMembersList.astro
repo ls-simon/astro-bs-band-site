@@ -1,16 +1,36 @@
 ---
-import { getBandMembers } from "../js/hypgraph.js";
-
-const bandmembersData = await getBandMembers();
-const members = bandmembersData.data.members;
+import { getMembers } from "../scripts/hygraph";
+import AOS from "./AOS.astro";
+const membersData = await getMembers();
+const members = membersData.data.members;
+let delay = 0;
 ---
-<p class="lead">Bandet består af:</p>
-<ul class="text-muted">
-  {
-    members.map((member) => (
-      <li>
-        {member.name} &#45; <i>{member.role}</i>
-      </li>
-    ))
-  }
-</ul>
+{
+  members.map((member) => {
+    delay += 150;
+    return (
+      <div class="col-lg-3 col-md-4 col-sm-6 p-2">
+        <AOS animation="flip-left" delay={delay}>
+          <div class="card border-0 border-bottom border shadow-sm overflow-hidden">
+            <div class="card-body">
+              <figure class="d-flex flex-column align-items-center m-0">
+                <img
+                  class="img-fluid rounded-circle border"
+                  style="object-fit: cover; aspect-ratio: 1"
+                  width="120"
+                  loading="lazy"
+                  src={member.image.url}
+                  alt={member.name}
+                />
+                <figcaption class="pt-4 text-center">
+                  <p class="mb-1">{member.name}</p>
+                  <p class="text-muted small m-0">{member.role}</p>
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+        </AOS>
+    </div>
+    );
+  })
+}

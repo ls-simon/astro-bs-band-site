@@ -1,42 +1,101 @@
 ---
 import type { Section } from "../../models/Models.ts";
 import Slider from "../Slider.astro";
-import { getReviews } from "../../js/hypgraph";
+import { getReviews } from "../../scripts/hygraph.js";
 import ReviewCard from "../ReviewCard.astro";
+import SectionContentWrapper from "../SectionContentWrapper.astro";
+import AOS from "../AOS.astro";
 interface Props {
-  section: Section
+  section: Section;
 }
-const {title, subtitle, description} = Astro.props.section;
+const { section } = Astro.props;
 const reviewsData = await getReviews();
 const reviews = reviewsData.data.reviews;
 ---
 
-<section id="reviews" data-bs-offset="-50">
-    <div class="row">
-     <div class="section-title">
-       <h2 class="m-0 text-center">{title}</h2>
-     </div>
-     <p class="lead text-center">{description}</p>
+<SectionContentWrapper
+  title={section.title}
+  subtitle={section.subtitle}
+  sectionId={section.sectionId}>
+  <AOS>
+    <div class="row p-4 px-lg-5 justify-content-center">
+      <div class="col col-lg-10 col-review-slider rounded-2">
+        <div class="text-center py-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="30px"
+            height="30px"
+            viewBox="0 0 1664 1408">
+            <path
+              fill="white"
+              d="M768 192v704q0 104-40.5 198.5T618 1258t-163.5 109.5T256 1408h-64q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h64q106 0 181-75t75-181v-32q0-40-28-68t-68-28H192q-80 0-136-56T0 576V192q0-80 56-136T192 0h384q80 0 136 56t56 136m896 0v704q0 104-40.5 198.5T1514 1258t-163.5 109.5T1152 1408h-64q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h64q106 0 181-75t75-181v-32q0-40-28-68t-68-28h-224q-80 0-136-56t-56-136V192q0-80 56-136t136-56h384q80 0 136 56t56 136"
+            ></path>
+          </svg>
+        </div>
+        <div class="card shadow">
+          <div class="card-body">
+            <Slider>
+              <ul class="slider-container" slot="slides">
+                {
+                  reviews.map((review) => {
+                    return (
+                      <li class="d-flex">
+                        <ReviewCard review={review} />
+                      </li>
+                    );
+                  })
+                }
+              </ul>
+              <div class="slider-indicators" slot="indicators">
+                {
+                  Array.from({ length: reviews.length }).map((_, index) => {
+                    return (
+                      <button
+                        aria-label="Go to slide"
+                        class={index == 0 ? "active" : null}
+                      />
+                    );
+                  })
+                }
+              </div>
+            </Slider>
+          </div>
+        </div>
+        <div class="text-center py-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="30px"
+            height="30px"
+            viewBox="0 0 1664 1408">
+            <path
+              fill="white"
+              d="M768 832v384q0 80-56 136t-136 56H192q-80 0-136-56T0 1216V512q0-104 40.5-198.5T150 150T313.5 40.5T512 0h64q26 0 45 19t19 45v128q0 26-19 45t-45 19h-64q-106 0-181 75t-75 181v32q0 40 28 68t68 28h224q80 0 136 56t56 136m896 0v384q0 80-56 136t-136 56h-384q-80 0-136-56t-56-136V512q0-104 40.5-198.5T1046 150t163.5-109.5T1408 0h64q26 0 45 19t19 45v128q0 26-19 45t-45 19h-64q-106 0-181 75t-75 181v32q0 40 28 68t68 28h224q80 0 136 56t56 136"
+            ></path>
+          </svg>
+        </div>
+      </div>
     </div>
-     <div class="row px-5 rounded-2">
-         <div class="col col-review-slider rounded-2">
-           <Slider>
-                <ul class="slider-container py-4" slot="slides">
-                    {reviews.map((review) => { return <li class="d-flex"><ReviewCard review={review}/></li> })}
-                </ul>
-                <div class="slider-indicators" slot="indicators">
-                    {Array.from({length:reviews.length}).map((_, index) => {
-                        return <button aria-label="Go to slide" class={index == 0 ? "active" : null}></button>
-                    })}
-                  </div>
-           </Slider>
-         </div>
-     </div>
-   </section>
+    <div class="row justify-content-center">
+      <div class="col-4 d-flex justify-content-center">
+        <a
+          role="button"
+          target="_blank"
+          href="https://www.facebook.com/SnackPatrolBand/reviews"
+          class="btn btn-outline-dark"
+          type="button">
+          Se flere anmeldelser
+        </a>
+      </div>
+    </div>
+  </AOS>
+</SectionContentWrapper>
 
+<style is:inline>
+  .col-review-slider {
+    background: var(--bg-emphasis);
+  }
 
-<style>
-    .slider-indicators {
-        margin-bottom: 0;
-    }
+  .slider-indicators {
+    margin-bottom: 0;
+  }
 </style>

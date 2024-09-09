@@ -1,17 +1,15 @@
 ---
 import type { Section } from "../../models/Models.ts";
 import HeroImage from "../HeroImage.astro";
+import backgroundImage from "../../assets/poster.jpg"
+
 interface Props {
-  section: Section
+  section: Section;
 }
-const {title, subtitle, description} = Astro.props.section;
+
+const { section } = Astro.props;
 ---
 
-<section class="mt-0 pt-0">
-    <div class="vh-100" id="hero-title">
-      <HeroImage
-      header={title}
-      lead={description}
-      backgroundImage="images/poster.jpg"
-      />
-  </section>
+<section class="mt-0 py-0" id="header">
+    <HeroImage section={section} backgroundImage={backgroundImage.src} />
+</section>

@@ -1,13 +1,28 @@
 ---
+import type { Section } from "../models/Models";
 import MainLayout from "../layouts/MainLayout.astro";
-import "../styles/index.css";
-import {getLoadedSectionComponents} from "../js/componentLoader.ts";
-const sectionComponents = await getLoadedSectionComponents();
+import Navbar from "../components/Navbar.astro";
+import { getLoadedSectionComponents } from "../scripts/componentLoader.ts";
+import { getSections } from "../scripts/hygraph.js";
+import Footer from "../components/Footer.astro";
+
+const sectionsData = await getSections();
+const sections = sectionsData.data.sections as Section[];
+const sectionComponents = await getLoadedSectionComponents(sections);
+const sectionsSorted = sections.sort(
+  (prevSection, nextSection) => prevSection.order - nextSection.order
+);
 ---
+
 <MainLayout title="Snack Patrol">
-{sectionComponents.map(({ component: Component, section: section }) =>
-  Component ? <Component section={section}/> : <div>Component not found</div>
-)}
-</PageCleanLayout>
-
-
+  <Navbar sections={sectionsSorted} />
+  <div data-bs-spy="scroll" data-bs-target="#navbar-scroll" data-bs-smooth-scroll="true">
+    {
+      sectionComponents.map(
+        ({ component: Component, section: section }) =>
+          Component && <Component section={section} />
+      )
+    }
+  </div>
+  <Footer />
+</MainLayout>

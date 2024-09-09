@@ -1,55 +1,126 @@
 ---
-import type { Section } from '../../models/Models.ts';
-import BandMembersList from '../BandMembersList.astro';
-import SocialMediaBar from '../SocialMediaBar.astro';
-import Video from '../Video.astro';
+import type { Section } from "../../models/Models.ts";
+import AOS from "../AOS.astro";
+import BandMembersList from "../BandMembersList.astro";
+import HeroImage from "../HeroImage.astro";
+import SectionContentWrapper from "../SectionContentWrapper.astro";
+import Video from "../Video.astro";
 
 interface Props {
-  section: Section
+  section: Section;
 }
-const {title, subtitle, description} = Astro.props.section;
+
+const { section } = Astro.props;
+const { title, subtitle, description, subsections } = section;
+const vlogSection = subsections.find((s) => s.subsectionId == "about-vlog");
+const storySection = subsections.find((s) => s.subsectionId == "about-story");
+const memberSection = subsections.find(
+  (s) => s.subsectionId == "about-members"
+);
 ---
-<section id="about" data-bs-offset="-50">
-    <div
-      class="row flex-lg-row-reverse align-items-center justify-content-center g-5 p-5 rounded-2">
-      <div class="col-10 col-lg-6 m-0 flex-fill">
+
+<SectionContentWrapper 
+  title={section.title}
+  subtitle={section.subtitle}
+  sectionId={section.sectionId}
+  backgroundColor="bg-body-secondary"
+  >
+  <div class="row p-4 flex-md-row-reverse justify-content-center rounded-2">
+    <div class="col-10 col-lg-6 flex-fill align-items-lg-center">
+      <AOS>
         <img
           src="images/portrait1.jpg"
           style="aspect-ratio: 16/9; object-fit:cover;"
-          class="img-fluid rounded-2"
+          class="img-fluid rounded-2 border"
           alt="About"
           width="700"
           height="500"
           loading="lazy"
         />
-      </div>
-      <div class="col-lg-6 m-0" data-aos="fade-up" data-aos-delay="200">
-        <h2 class="section-title fw-bold text-body-emphasis lh-1 mb-5">
-          {title}
-        </h2>
-        <p class="lead">
-          {subtitle}
-        </p>
-        <p class="text-body">
-          {description}
-        </p>
-        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-          <button
-            type="button"
-            class="btn btn-outline-secondary px-4" data-bs-target="#contact">Kontakt os</button
-          >
+      </AOS>
+    </div>
+    <div class="col col-lg-6">
+      <AOS delay={400}>
+        <div set:html={description.html} />
+      </AOS>
+    </div>
+  </div>
+
+  <div class="row flex-column flex-lg-row p-4">
+    {
+      vlogSection && (
+        <div class="col col-lg-6">
+          <AOS>
+            <Video url="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2FSnackPatrolBand%2Fvideos%2F783649595737217%2F&show_text=false" />
+            <p class="text-center text-muted small pt-2">
+              <i>{vlogSection.subtitle}</i>
+            </p>
+          </AOS>
         </div>
-      </div>
-    </div>
-    <div class="row p-5 g-5">
-      <div class="col-lg-6">
-        <Video url="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2FSnackPatrolBand%2Fvideos%2F783649595737217%2F&show_text=false&width=560&t=0"/>
-      </div>
-      <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-        <BandMembersList/>
-      </div>
-    </div>
-    <div class="row g-5 p-5"> 
-      <SocialMediaBar title=""/>
-    </div>
+      )
+    }
+
+    {
+      storySection && (
+        <div class="col col-lg-6">
+          <AOS delay={400}>
+            <p class="lead fw-bold">{storySection.title}</p>
+            <p>{storySection.subtitle}</p>
+            <p>{storySection.description}</p>
+          </AOS>
+        </div>
+      )
+    }
+  </div>
+  <div class="hero-band-fixed-bg">
+    <section>
+    {
+      memberSection && (
+
+        <div class="row pt-5">
+          <div class="section-title pt-5" style="color: white">
+            <h2>{memberSection.title}</h2>
+          </div>
+          </div>
+        <div class="row justify-content-center">
+          <BandMembersList title={memberSection.title}/>
+        </div>
+      )
+    }  
   </section>
+</div>
+  
+</SectionContentWrapper>
+
+<style is:inline>
+    .hero-band-fixed-bg {
+      position: relative;
+      opacity: 1;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      width: 100%;
+    }
+    
+    .hero-band-fixed-bg::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: -1;
+      background-image: linear-gradient(rgb(0 0 0 / 35%), rgb(1 1 1 / 21%)), url(images/poster2.jpg);
+      background-size: cover;
+      background-position: center;
+      transition: opacity .5s ease-out;
+      background-blend-mode: hard-light;
+      clip-path: polygon(100% 100%, 0% 100% , 0.00% 19.36%, 2.00% 19.33%, 4.00% 19.25%, 6.00% 19.12%, 8.00% 18.94%, 10.00% 18.70%, 12.00% 18.42%, 14.00% 18.08%, 16.00% 17.70%, 18.00% 17.28%, 20.00% 16.81%, 22.00% 16.31%, 24.00% 15.77%, 26.00% 15.20%, 28.00% 14.59%, 30.00% 13.96%, 32.00% 13.31%, 34.00% 12.64%, 36.00% 11.95%, 38.00% 11.26%, 40.00% 10.55%, 42.00% 9.84%, 44.00% 9.14%, 46.00% 8.43%, 48.00% 7.74%, 50.00% 7.06%, 52.00% 6.39%, 54.00% 5.75%, 56.00% 5.13%, 58.00% 4.53%, 60.00% 3.97%, 62.00% 3.44%, 64.00% 2.95%, 66.00% 2.50%, 68.00% 2.09%, 70.00% 1.73%, 72.00% 1.41%, 74.00% 1.14%, 76.00% 0.92%, 78.00% 0.75%, 80.00% 0.64%, 82.00% 0.58%, 84.00% 0.57%, 86.00% 0.61%, 88.00% 0.71%, 90.00% 0.86%, 92.00% 1.06%, 94.00% 1.31%, 96.00% 1.62%, 98.00% 1.96%, 100.00% 2.36%);
+    }
+
+    .sd {
+    background: var(--bg-emphasis);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    }
+</style>

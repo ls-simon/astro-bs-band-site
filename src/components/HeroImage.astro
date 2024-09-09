@@ -1,26 +1,25 @@
 ---
+import type { Section } from "../models/Models";
+import SocialMediaBar from "./SocialMediaBar.astro";
+
 interface Props {
+  section: Section;
   backgroundImage: string;
-  header: string;
-  lead: string;
-  body?: string;
 }
 
-const { backgroundImage, header, lead, body } = Astro.props;
+const { backgroundImage, section } = Astro.props;
 ---
 
 <header
-  class="hero-fixed-bg d-flex flex-column h-100"
-  style={{backgroundImage: `linear-gradient(rgb(0 0 0 / 27%), rgb(1 1 1 / 44%)),url(${backgroundImage});`,
-          backgroundSize: 'cover',
-          backgroundRepeat: 'no-repeat',
-          backgroundAttachment: 'fixed'
-  }}
->
-  <div class="col-lg-6 py-5 m-auto">
-    <h1 class="display-5 fw-bold text-light text-center lh-1 mb-3">{header}</h1>
-    <p class="lead text-light text-center">{lead}</p>
-    <p class="text-muted">{body}</p>
+  class="hero-fixed-bg">
+  <div class="col-lg-6 d-flex flex-column h-100 justify-content-evenly m-auto py-5">
+    <div>
+      <div class="hero-title display-1 fw-bold text-center">{section.subtitle}</div>
+      <div class="lead text-light text-center text-opacity-75">
+        <div set:html={section.description.html} />
+    </div>
+    </div>
+    <SocialMediaBar />
   </div>
+  
 </header>
-

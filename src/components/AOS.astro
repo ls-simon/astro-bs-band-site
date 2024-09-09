@@ -1,0 +1,24 @@
+---
+interface Props {
+  easing?: string;
+  duration?: number;
+  delay?: number;
+  animation?: string;
+}
+const {
+  easing = "ease-out-back",
+  duration = 1000,
+  delay = 0,
+  animation = "zoom-in-up",
+} = Astro.props;
+---
+
+<div
+  data-aos-easing={easing}
+  data-aos-duration={duration.toString()}
+  data-aos-delay={delay.toString()}
+  data-aos={animation}
+  data-aos-once="true">
+  
+  <slot />
+</div>

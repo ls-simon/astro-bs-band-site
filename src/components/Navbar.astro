@@ -1,41 +1,79 @@
+---
+import type { Section } from "../models/Models";
+import ThemePicker from "./ThemePicker.astro";
+
+interface Props {
+  sections: Section[];
+}
+
+const { sections } = Astro.props;
+---
+
 <header class="position-sticky top-0">
-    <nav class="navbar navbar-expand-lg position-fixed w-100">
-        <div class="container-fluid px-4">
-          <a class="navbar-brand" href="/">SNACK PATROL</a>
-            <ul class="navbar-nav ms-auto me-0 mb-lg-0 fw-semi-bold gap-4">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#hero-title">VELKOMMEN</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#music">MUSIK</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#about">OM OS</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#contact">KONTAKT</a>
-              </li>
-            </ul>
+  <nav class="navbar navbar-expand-lg position-fixed w-100" id="navbar-scroll">
+    <div class="container-fluid px-4">
+      <a class="navbar-brand" href="/">SNACK PATROL</a>
+      <div class="gap-2 d-flex align-items-center">
+        <div class="nav-item">
+          <div class="nav-link d-block d-lg-none ms-auto pe-4">
+            <ThemePicker /> 
+          </div>
         </div>
-      </nav>
+        <button
+        class="navbar-toggler d-flex d-lg-none align-items-center py-2 rounded-2"
+        type="button"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasNavbar"
+        aria-controls="offcanvasNavbar">
+        <span class="toggle-icon"></span>
+      </button>
+    </div>
+      <div
+        class="offcanvas offcanvas-start"
+        tabindex="-1"
+        id="offcanvasNavbar"
+        aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
+            SNACK PATROL
+          </h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav ms-auto me-0 mb-lg-0 fw-semi-bold gap-lg-4">
+            {
+              sections.map((section, index) => (
+                <li class="nav-item">
+                  {index == 0 ? (
+                    <a
+                      class="nav-link active text-uppercase"
+                      aria-current="page"
+                      href={"#" + section.sectionId}>
+                      {section.title}
+                    </a>
+                  ) : (
+                    <a
+                      class="nav-link text-uppercase"
+                      href={"#" + section.sectionId}>
+                      {section.title}
+                    </a>
+                  )}
+                </li>
+              ))
+            }
+            <li class="nav-item nav-theme-picker d-none d-lg-block">
+              <div class="nav-link">
+                  <ThemePicker /> 
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
 </header>
-
-<style>
-  header {
-    z-index: 1;
-  }
-  .navbar {
-    box-shadow: 0px 0px 15px 0px #dddddd;
-  }
-
-  .nav-link {
-    color: rgba(255, 255, 255, 0.5);
-    
-    &:hover {
-      color: #ffffff;
-    }
-    &.active {
-      color: rgba(255, 255, 255, 0.5);
-    }
-  }
-</style>

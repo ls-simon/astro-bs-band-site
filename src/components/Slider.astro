@@ -1,7 +1,19 @@
 <div
-  class="swiffy-slider slider-item-show1 slider-nav-outside slider-nav-visible slider-nav-animation slider-nav-animation-fadein">
-  <slot name="slides"/>
+  class="swiffy-slider mt-0 slider-item-show1 slider-nav-dark slider-nav-outside slider-nav-visible slider-nav-animation slider-nav-animation-fadein slider-indicators-round slider-indicators-dark slider-indicators-sm slider-indicators-hightlight">
+  <slot name="slides" />
   <button type="button" class="slider-nav" aria-label="Go left"></button>
-  <button type="button" class="slider-nav slider-nav-next" aria-label="Go left"></button>
+  <button type="button" class="slider-nav slider-nav-next" aria-label="Go left"
+  ></button>
   <slot name="indicators" />
 </div>
+
+<style is:inline>
+  .slider-indicators {
+    margin-bottom: 0;
+    position: relative;
+    bottom: unset;
+    top: unset;
+    left: unset;
+    right: unset;
+  }
+</style>

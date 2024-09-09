@@ -1,0 +1,34 @@
+$nav-fade-in: 5%;
+
+@mixin make-kf($name, $percentages, $property, $values) {
+    @keyframes #{$name} {
+        @each $percentage, $value in zip($percentages, $values) {
+            #{$percentage} {
+                #{$property}: #{$value};
+            }
+        }
+    }
+}
+
+@include make-kf(fade-in-navbar-bg, (0%, $nav-fade-in, 100%), background-color, (transparent, var(--bs-body-bg), var(--bs-body-bg)));
+@include make-kf(nav-text-color, (0%, $nav-fade-in, 100%), color, (var(--bs-body-bg), var(--bs-body-color), var(--bs-body-color)));
+@include make-kf(nav-link-underline-color, (0%, $nav-fade-in, 100%), background-color, (var(--bs-body-bg), var(--bs-body-color), var(--bs-body-color)));
+@include make-kf(nav-shadow, (0%, $nav-fade-in, 100%), box-shadow, (none, var(--bs-box-shadow-sm), var(--bs-box-shadow-sm)));
+
+.navbar {
+    animation: fade-in-navbar-bg linear, nav-shadow linear;
+    animation-timeline: scroll(y);   
+    
+    .nav-link,
+    .navbar-brand {
+        animation: nav-text-color linear;
+        animation-timeline: scroll(y);
+    }
+    
+    .nav-item:not(.nav-theme-picker) {
+        .nav-link::before {
+            animation: nav-link-underline-color linear;
+            animation-timeline: scroll(y);
+        }
+    }
+}

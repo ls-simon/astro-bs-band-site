@@ -1,0 +1,21 @@
+---
+import type { Section } from "../models/Models";
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  sectionId: string;
+  backgroundColor?: string,
+}
+const { title, subtitle, sectionId, backgroundColor } = Astro.props;
+---
+
+<section class={backgroundColor} id={sectionId}>
+  <div class="row">
+    <div class="section-title">
+      <h2 class="mb-4">{title}</h2>
+      {subtitle && <h3 class="lead">{subtitle}</h3>}
+  </div>
+</div>
+<slot />
+</section>

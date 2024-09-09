@@ -1,0 +1,83 @@
+@import "bootstrap";
+
+$color-mode-type: data;
+
+@include color-mode(light) {
+    --bs-body-font-family: var(--poppins);
+
+    .bg-body-secondary {
+        --bs-bg-opacity: .2;
+        --bs-secondary-bg-rgb: 89, 89, 223;
+    }
+
+    .theme-picker svg path {
+        animation: theme-picker-light linear;
+        animation-timeline: scroll(y);
+    }
+
+    .toggle-icon {
+        animation: nav-link-underline-color linear;
+        animation-timeline: scroll(y);
+    } 
+
+    .navbar-toggler {
+        border-radius: 1px;
+        border-style: solid;
+        animation: navbar-toggler-border linear;
+        animation-timeline: scroll(y);
+    }
+}
+
+@include color-mode(dark) {
+    --bs-body-font-family: var(--poppins);
+    --bs-body-color: #fff;
+
+    .hero-fixed-bg::before {
+        opacity: .3;
+        background-blend-mode: overlay;
+    }
+
+    .bg-body-secondary {
+        --bs-bg-opacity: .15;
+        --bs-secondary-bg-rgb: 155, 103, 240;
+    }
+
+    
+    .theme-picker svg path {
+        fill: currentColor;
+    }
+
+    .nav-link::before {
+        animation: none;
+        animation-timeline: none;
+        background-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .nav-link,
+    .navbar-brand {
+        animation: none;
+        animation-timeline: none;
+
+    }
+
+    .slider-nav-dark .slider-nav::after {
+        background-color: var(--bs-body-color);
+    }
+}
+
+html * {
+    transition: background-color 0.5s, color 0.1s, border-color 0.4s;
+  }
+
+
+@keyframes theme-picker-light {
+    0% {
+        fill: white;
+    }
+
+    10%, 100% {
+        fill: black;
+    }
+}
+
+

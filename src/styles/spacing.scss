@@ -1,8 +1,16 @@
 
+.row {
+    --bs-gutter-x: 0rem !important;
+    --bs-gutter-y: 2rem !important;
+}
+
 section { 
     padding-top: 3rem;
     padding-bottom: 1rem;
 
+    .section-title .lead {
+        margin-bottom: var(--bs-gutter-y);
+    }
 
     .row {
         padding: 1.5rem;
@@ -14,9 +22,8 @@ section {
         padding-right: 1.5rem;
     }
 
-    
-    // .row > * {
-    //     padding-right: calc(var(--bs-gutter-x) * 1);
-    //     padding-left: calc(var(--bs-gutter-x) * 1);
-    // }
+ 
+    p {
+        max-width: 60ch;
+    }
 }

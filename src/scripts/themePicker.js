@@ -5,11 +5,11 @@ const currentTheme = prefersDarkScheme ? 'dark' : 'light';
 themeElement.setAttribute("data-bs-theme", currentTheme);
 themePickers.forEach((themePicker) => {
     if (currentTheme === 'dark') {
-        themePicker.querySelector(".icon-dark").classList.add("d-none");
-        themePicker.querySelector(".icon-light").classList.add("active");
-    } else {
-        themePicker.querySelector(".icon-light").classList.add("d-none");
         themePicker.querySelector(".icon-dark").classList.add("active");
+        themePicker.querySelector(".icon-light").classList.add("d-none");
+    } else {
+        themePicker.querySelector(".icon-light").classList.add("active");
+        themePicker.querySelector(".icon-dark").classList.add("d-none");
     }
 })
 

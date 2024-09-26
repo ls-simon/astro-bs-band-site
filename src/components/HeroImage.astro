@@ -14,7 +14,7 @@ const { section } = Astro.props;
   <div class="col-lg-6 d-flex flex-column h-100 justify-content-evenly m-auto py-5">
     <div>
       <div class="hero-title display-1 fw-bold text-center">{section.subtitle}</div>
-      <div class="lead text-light text-center text-opacity-75">
+      <div class="lead text-light text-center my-4 my-lg-0 text-opacity-75">
         <div set:html={section.description.html} />
     </div>
     </div>

@@ -16,15 +16,13 @@ const { subsections } = section;
   sectionId={section.sectionId}
   backgroundColor="bg-body-secondary"
   >
-  <div class="row p-4 flex-column flex-lg-row justify-content-center gap-4 gap-lg-0">
+  <div class="row p-lg-4 justify-content-center gap-4 gap-sm-0">
     <div class="col col-lg-6">
       <AOS>
-        <div>
-          <div set:html={section.description.html} />
-        </div>
+        <div set:html={section.description.html} class="text-center text-md-start mb-5"/>
         <div>
           <img
-            class="object-fit-cover border img-fluid rounded-2"
+            class="object-fit-cover border img-fluid rounded-2 d-none d-lg-block"
             src="/images/portrait6.jpg"
             style="aspect-ratio:16/9"
           />

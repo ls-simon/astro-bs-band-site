@@ -7,9 +7,10 @@ export type Section = {
     markdown: string;
     text: string;
   };
+  subsections: Subsection[];
   order: number;
   sectionId: string;
-  subsections: Subsection[];
+  includeInNavigation: boolean;
 };
 
 export type Subsection = {

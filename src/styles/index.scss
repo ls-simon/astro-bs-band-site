@@ -1,11 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-
-@import "bootstrap"; 
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
 
   :root {
     --poppins: "Poppins", sans serif;
+    --fredoka: "Quicksand", sans serif;
     --bg-emphasis: -webkit-linear-gradient(45deg, #0450e6, #ff49ae 80%);
-    
   }
 
   html * {
@@ -18,7 +17,15 @@
     overflow-y: scroll !important;
   }
 
-@include media-breakpoint-up(lg) {
+  .lead {
+    font-family: var(--fredoka);
+  }
+
+  h3.lead {
+    font-weight: 800;
+  }
+
+@media (min-width: 992px) {
     .navbar {
         .nav-link {
             color: rgba(255, 255, 255, 0.5);
@@ -54,7 +61,7 @@
     }
 }
 
-@include media-breakpoint-down(lg) {
+@media (max-width: 991.8px) {
     .navbar-collapse {
         animation: none;
         background-color: white;

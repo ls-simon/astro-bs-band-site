@@ -1,12 +1,8 @@
 ---
-import type { Section } from "../models/Models";
 import ThemePicker from "./ThemePicker.astro";
-
-interface Props {
-  sections: Section[];
-}
-
-const { sections } = Astro.props;
+import { getSectionsSortedByOrderId } from "../scripts/componentLoader";
+let sections = await getSectionsSortedByOrderId();
+sections = sections.filter(section => section.includeInNavigation);
 ---
 
 <header class="position-sticky top-0">

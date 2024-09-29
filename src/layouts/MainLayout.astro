@@ -2,12 +2,14 @@
 interface Props {
   title: string;
 }
-import "swiffy-slider/css";
-import "aos/dist/aos.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../styles/bootstrap.scss";
 import "../styles/index.scss";
 import "../styles/animations.scss";
 import "../styles/theme.scss";
 import "../styles/spacing.scss";
+import "swiffy-slider/css";
+import "aos/dist/aos.css";
 
 const { title } = Astro.props;
 ---
@@ -42,5 +44,5 @@ const { title } = Astro.props;
     <slot />
   </body>
   <script src="../scripts/aos.js"></script>
-  <script src="../scripts/themePicker.js"></script>
+  <script src="./../scripts/themePicker.ts"></script>
 </html>

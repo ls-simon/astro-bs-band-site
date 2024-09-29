@@ -21,6 +21,7 @@ async function getSections() {
                     }
                     order
                     sectionId
+                    includeInNavigation
                     }
                 }`;
   return await get(query);

@@ -1,0 +1,26 @@
+---
+import type { Section } from "../models/Models";
+import Footer from "../components/Footer.astro";
+import About from "../components/sections/About.astro";
+import FAQ from "../components/sections/FAQ.astro";
+import Header from "../components/sections/Header.astro";
+import Reviews from "../components/sections/Reviews.astro";
+import Music from "../components/sections/Music.astro";
+import { getSectionsSortedByOrderId } from "../scripts/componentLoader.ts";
+const sections = await getSectionsSortedByOrderId();
+---
+{
+
+    sections.map(
+      (section) => {
+        return (
+          section.sectionId == "about" ? <About section={section}/> :
+          section.sectionId == "faq" ? <FAQ section={section}/> :
+          section.sectionId == "header" ? <Header section={section}/> :
+          section.sectionId == "reviews" ? <Reviews section={section}/> :
+          section.sectionId == "music" ? <Music section={section}/> :
+          section.sectionId == "footer" ? <Footer section={section}/> :
+          null
+        );
+    })
+  }

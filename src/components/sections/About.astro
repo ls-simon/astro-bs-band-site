@@ -45,10 +45,10 @@ const memberSection = subsections.find(
     </div>
   </div>
 
-  <div class="row flex-column flex-lg-row p-lg-4 align-items-center">
+  <div class="row flex-column flex-lg-row p-lg-4">
     {
       vlogSection && (
-        <div class="col col-lg-6">
+        <div class="col col-lg-6 align-content-center">
           <AOS>
             <Video url="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2FSnackPatrolBand%2Fvideos%2F783649595737217%2F&show_text=false" />
             <p class="text-lg-center text-muted small pt-2">
@@ -81,7 +81,7 @@ const memberSection = subsections.find(
             <h2>{memberSection.title}</h2>
           </div>
           </div>
-        <div class="row justify-content-center">
+        <div class="row justify-content-center mx-1">
           <BandMembersList title={memberSection.title}/>
         </div>
       )

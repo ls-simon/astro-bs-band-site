@@ -1,8 +1,4 @@
-@import "bootstrap";
-
-$color-mode-type: data;
-
-@include color-mode(light) {
+[data-bs-theme="light"] {
     --bs-body-font-family: var(--poppins);
 
     .bg-body-secondary {
@@ -18,7 +14,7 @@ $color-mode-type: data;
     .toggle-icon {
         animation: nav-link-underline-color linear;
         animation-timeline: scroll(y);
-    } 
+    }
 
     .navbar-toggler {
         border-radius: 1px;
@@ -28,7 +24,7 @@ $color-mode-type: data;
     }
 }
 
-@include color-mode(dark) {
+[data-bs-theme="dark"] {
     --bs-body-font-family: var(--poppins);
     --bs-body-color: #fff;
 
@@ -42,7 +38,7 @@ $color-mode-type: data;
         --bs-secondary-bg-rgb: 155, 103, 240;
     }
 
-    
+
     .theme-picker svg path {
         fill: currentColor;
     }
@@ -67,7 +63,7 @@ $color-mode-type: data;
 
 html * {
     transition: background-color 0.5s, color 0.1s, border-color 0.4s;
-  }
+}
 
 
 @keyframes theme-picker-light {
@@ -79,5 +75,3 @@ html * {
         fill: black;
     }
 }
-
-

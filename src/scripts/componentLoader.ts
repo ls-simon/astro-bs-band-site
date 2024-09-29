@@ -1,4 +1,5 @@
 import type { Section } from "../models/Models";
+import { getSections } from "./hygraph";
 
 export async function getLoadedSectionComponents(sections: Section[]) {
   const loadSectionComponent = async (sectionId: string) => {
@@ -22,4 +23,12 @@ export async function getLoadedSectionComponents(sections: Section[]) {
     (scPrev, scNext) => scPrev.section.order - scNext.section.order
   );
   return componentsSortedByOrder;
+}
+
+export async function getSectionsSortedByOrderId() {
+  const sectionsData = await getSections();
+  const sections = sectionsData.data.sections as Section[];
+  return sections.sort(
+    (prevSection, nextSection) => prevSection.order - nextSection.order
+  );
 }

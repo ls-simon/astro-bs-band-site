@@ -1,5 +1,5 @@
 ---
-import type { Section } from "../../models/Models.ts";
+import type { Review, Section } from "../../models/Models.ts";
 import Slider from "../Slider.astro";
 import { getReviews } from "../../scripts/hygraph.js";
 import ReviewCard from "../ReviewCard.astro";
@@ -10,7 +10,7 @@ interface Props {
 }
 const { section } = Astro.props;
 const reviewsData = await getReviews();
-const reviews = reviewsData.data.reviews;
+const reviews: Review[] = reviewsData.data.reviews.sort((a, b) => new Date(b.date).getMilliseconds() - new Date(a.date).getMilliseconds());
 ---
 
 <SectionContentWrapper
@@ -33,9 +33,10 @@ const reviews = reviewsData.data.reviews;
           </svg>
         </div>
         <div class="card shadow">
-          <div class="card-body">
+          <div class="card-body pt-lg-5">
             <Slider>
               <ul class="slider-container" slot="slides">
+               
                 {
                   reviews.map((review) => {
                     return (
